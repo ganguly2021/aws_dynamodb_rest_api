@@ -16,7 +16,7 @@ Object.defineProperties(Todo.prototype, {
       name: {
         type: "String",
       },
-      complete: {
+      completed: {
         type: "Boolean",
       },
     },

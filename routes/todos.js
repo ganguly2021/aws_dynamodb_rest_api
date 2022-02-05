@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { v4: uuidV4 } = require("uuid");
+const mapper = require("./../db/DynamoClient");
+const Todo = require("./../models/Todo.model");
+
 let database = [];
 
 // routes
@@ -33,9 +36,27 @@ router.post("/", (req, res) => {
   // create new document
   const document = {
     name: req.body.name,
-    id: uid,
+    uuid: uid,
     completed: false,
   };
+
+  // create dynamodb document
+  const todo = new Todo();
+
+  todo.name = req.body.name;
+  todo.uuid = uid;
+  todo.completed = false;
+
+  console.log(todo);
+
+  mapper
+    .put({ item: todo })
+    .then((temp) => {
+      console.log(temp);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   // insert document into database
   database = database.concat([document]);
@@ -60,7 +81,7 @@ router.put("/:id", (req, res) => {
   const todo_id = req.params.id;
 
   // find index
-  const dbIndex = database.findIndex((todo) => todo.id === todo_id);
+  const dbIndex = database.findIndex((todo) => todo.uuid === todo_id);
 
   // if todo exists in database
   if (dbIndex >= 0) {
