@@ -67,8 +67,8 @@ router.put("/:id", (req, res) => {
     // copy old todo
     const updatedTodo = Object.assign({}, database[dbIndex]);
 
-    // update todo compelete status to true
-    updatedTodo.completed = true;
+    // update todo status
+    updatedTodo.completed = !updatedTodo.completed;
 
     // if new name provided for todo
     if (req.body.name) {
