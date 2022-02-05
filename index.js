@@ -7,12 +7,17 @@ const port = process.env.PORT;
 const cors = require('cors');
 const morgan = require('morgan');
 
+// import todos api routes
+const todosRoute = require('./routes/todos');
+
 
 // middleware setup
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/v1/todos', todosRoute);
 
 
 // default path
