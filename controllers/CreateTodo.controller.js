@@ -1,4 +1,4 @@
-const { v4: uuidV4 } = require("uuid");
+const uuidV4 = require("uuid").v4;
 const mapper = require("./../db/DynamoClient");
 const Todo = require("./../models/Todo.model");
 const { todoSchema } = require("../validations/schema/todos.schema");
