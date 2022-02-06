@@ -14,3 +14,6 @@ dynamodb-admin
 
 # For Mac/Linux:
 DYNAMO_ENDPOINT=http://localhost:8000 dynamodb-admin
+
+# Get all HTTP Status Code
+https://httpstatuses.com/
