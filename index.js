@@ -8,7 +8,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 // import todos api routes
-const todosRoute = require('./routes/todos');
+const todosRoute = require('./routes/todos.route');
 
 
 // middleware setup
